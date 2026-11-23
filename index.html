@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mqadi Driving School — Calm, K53-Aligned Driving Lessons in Roodepoort</title>
+<meta name="description" content="Patient, structured K53 driving lessons in Florida, Roodepoort & the West Rand. Code 8 & Code 10 training, learner's licence prep, doorstep pickups and test-day car hire.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M32 3 58 12v20c0 15-11 25-26 29C17 57 6 47 6 32V12z' fill='%230F172A'/%3E%3Ccircle cx='32' cy='31' r='14' fill='none' stroke='%23F59E0B' stroke-width='4'/%3E%3Ccircle cx='32' cy='31' r='3.5' fill='%23059669'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --navy-900: #0F172A;
+    --navy-800: #1E293B;
+    --navy-600: #475569;
+    --emerald: #059669;
+    --emerald-dark: #047857;
+    --cobalt: #0284C7;
+    --amber: #D97706;
+    --gold: #F59E0B;
+    --surface: #F8FAFC;
+    --white: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #0F172A;
+    --muted: #475569;
+    --danger: #B91C1C;
+    --radius: 14px;
+    --shadow: 0 10px 30px -12px rgba(15, 23, 42, .25);
+    --focus: 0 0 0 3px #FFFFFF, 0 0 0 6px var(--cobalt);
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
+  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif; color: var(--text); background: var(--surface); line-height: 1.6; }
+  img, svg { display: block; max-width: 100%; }
+  a { color: var(--cobalt); }
+  h1, h2, h3, h4 { line-height: 1.2; margin: 0 0 .5em; }
+  p { margin: 0 0 1em; }
+  .container { width: min(1160px, 100% - 2.5rem); margin-inline: auto; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  :focus-visible { outline: none; box-shadow: var(--focus); border-radius: 6px; }
+  .skip-link { position: absolute; left: 1rem; top: -60px; background: var(--gold); color: var(--navy-900); padding: .6rem 1rem; border-radius: 8px; font-weight: 700; z-index: 100; }
+  .skip-link:focus { top: 1rem; }
+
+  /* ---------- Buttons ---------- */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; padding: .8rem 1.3rem; border-radius: 999px; border: 2px solid transparent; font: inherit; font-weight: 700; cursor: pointer; text-decoration: none; transition: transform .15s, background .15s; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--emerald); color: var(--white); }
+  .btn-primary:hover { background: var(--emerald-dark); }
+  .btn-amber { background: var(--gold); color: var(--navy-900); }
+  .btn-amber:hover { background: #FBBF24; }
+  .btn-ghost { background: transparent; color: var(--white); border-color: rgba(255,255,255,.5); }
+  .btn-ghost:hover { background: rgba(255,255,255,.08); }
+  .btn-outline { background: var(--white); color: var(--navy-900); border-color: var(--border); }
+  .btn-outline:hover { border-color: var(--navy-600); }
+  .btn-sm { padding: .5rem 1rem; font-size: .9rem; }
+
+  /* ---------- Nav ---------- */
+  .site-header { position: sticky; top: 0; z-index: 50; background: rgba(15, 23, 42, .96); backdrop-filter: blur(8px); border-bottom: 1px solid rgba(255,255,255,.08); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 68px; }
+  .brand { display: flex; align-items: center; gap: .6rem; color: var(--white); text-decoration: none; font-weight: 800; letter-spacing: .2px; }
+  .brand small { display: block; font-weight: 500; font-size: .72rem; color: #CBD5E1; letter-spacing: .6px; text-transform: uppercase; }
+  .nav-links { display: flex; align-items: center; gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
+  .nav-links a:not(.btn) { color: #E2E8F0; text-decoration: none; font-weight: 500; font-size: .95rem; }
+  .nav-links a:not(.btn):hover { color: var(--gold); }
+  .menu-toggle { display: none; background: none; border: 2px solid rgba(255,255,255,.3); color: var(--white); border-radius: 10px; padding: .45rem .6rem; cursor: pointer; }
+  @media (max-width: 960px) {
+    .menu-toggle { display: inline-flex; }
+    .nav-links { position: absolute; inset: 68px 0 auto 0; flex-direction: column; align-items: stretch; gap: 0; background: var(--navy-900); padding: .5rem 1.25rem 1.25rem; display: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+    .nav-links.open { display: flex; }
+    .nav-links li a:not(.btn) { display: block; padding: .8rem 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .nav-links .btn { margin-top: 1rem; width: 100%; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero { background: radial-gradient(1200px 500px at 85% -10%, rgba(2,132,199,.35), transparent 60%), linear-gradient(160deg, var(--navy-900), var(--navy-800)); color: var(--white); padding: 5rem 0 3.5rem; position: relative; overflow: hidden; }
+  .hero::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 8px; background: repeating-linear-gradient(90deg, var(--gold) 0 48px, transparent 48px 80px); opacity: .9; }
+  .hero-grid { display: grid; grid-template-columns: 1.25fr .9fr; gap: 3rem; align-items: center; }
+  .eyebrow { display: inline-block; font-size: .8rem; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold); margin-bottom: .9rem; }
+  .hero h1 { font-size: clamp(2rem, 4.5vw, 3.3rem); font-weight: 800; }
+  .hero h1 span { color: var(--gold); }
+  .hero p.lead { font-size: 1.12rem; color: #CBD5E1; max-width: 38rem; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: .8rem; margin: 1.6rem 0 1rem; }
+  .hero-note { font-size: .85rem; color: #94A3B8; }
+  .hero-card { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 20px; padding: 1.6rem; }
+  .hero-card ul { list-style: none; padding: 0; margin: 1rem 0 0; display: grid; gap: .75rem; }
+  .hero-card li { display: flex; gap: .7rem; align-items: flex-start; color: #E2E8F0; }
+  .tick { flex: none; width: 22px; height: 22px; border-radius: 50%; background: var(--emerald); display: grid; place-items: center; margin-top: 2px; }
+  .cred-strip { margin-top: 2.8rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; }
+  .cred { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 12px; padding: .9rem 1rem; font-weight: 700; font-size: .95rem; display: flex; gap: .6rem; align-items: center; }
+  .cred svg { flex: none; color: var(--gold); }
+  .demo-tag { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; background: rgba(245,158,11,.15); color: #FCD34D; border: 1px solid rgba(245,158,11,.4); padding: .1rem .5rem; border-radius: 999px; }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } .cred-strip { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .cred-strip { grid-template-columns: 1fr; } .hero { padding-top: 3rem; } }
+
+  /* ---------- Sections ---------- */
+  section.block { padding: 5rem 0; }
+  section.alt { background: var(--white); }
+  .section-head { max-width: 46rem; margin-bottom: 2.5rem; }
+  .section-head h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+  .section-head p { color: var(--muted); font-size: 1.05rem; }
+  .kicker { color: var(--emerald); font-weight: 800; font-size: .8rem; letter-spacing: 1.2px; text-transform: uppercase; }
+  .card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.5rem; box-shadow: var(--shadow); }
+
+  /* ---------- Tabs / toggles ---------- */
+  .tablist { display: flex; flex-wrap: wrap; gap: .5rem; padding: .35rem; background: #EEF2F7; border-radius: 999px; width: fit-content; max-width: 100%; }
+  .tab { border: 0; background: transparent; padding: .65rem 1.1rem; border-radius: 999px; font: inherit; font-weight: 700; color: var(--muted); cursor: pointer; }
+  .tab[aria-selected="true"], .seg[aria-pressed="true"] { background: var(--navy-900); color: var(--white); }
+  .tab:hover:not([aria-selected="true"]) { color: var(--navy-900); }
+  .course-panel { margin-top: 1.5rem; display: grid; grid-template-columns: 1.1fr 1fr; gap: 1.5rem; }
+  .course-panel h3 { font-size: 1.5rem; }
+  .pill { display: inline-block; background: #ECFDF5; color: var(--emerald-dark); border-radius: 999px; padding: .15rem .7rem; font-size: .8rem; font-weight: 700; margin: 0 .3rem .3rem 0; }
+  .pill.amber { background: #FFFBEB; color: #92400E; }
+  .list-check { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
+  .list-check li { padding-left: 1.7rem; position: relative; }
+  .list-check li::before { content: ""; position: absolute; left: 0; top: .45em; width: 1rem; height: 1rem; border-radius: 4px; background: var(--emerald) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5 6.5 11.5 12.5 4.5' fill='none' stroke='white' stroke-width='2'/%3E%3C/svg%3E") center/80% no-repeat; }
+  .muted { color: var(--muted); }
+  .stage-wrap { margin-top: 3rem; }
+  .segmented { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .seg { border: 2px solid var(--border); background: var(--white); padding: .6rem 1rem; border-radius: 12px; font: inherit; font-weight: 700; cursor: pointer; color: var(--navy-800); }
+  .seg[aria-pressed="true"] { border-color: var(--navy-900); }
+  .stage-grid { margin-top: 1.2rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1rem 1.2rem; }
+  .stat b { display: block; font-size: 1.15rem; color: var(--navy-900); }
+  .stat span { font-size: .85rem; color: var(--muted); }
+  @media (max-width: 860px) { .course-panel, .stage-grid { grid-template-columns: 1fr; } .tablist { border-radius: 16px; } }
+
+  /* ---------- Estimator ---------- */
+  .est-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  fieldset { border: 0; padding: 0; margin: 0 0 1.4rem; }
+  legend, .label { font-weight: 800; margin-bottom: .6rem; display: block; color: var(--navy-900); }
+  .choice-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; }
+  .choice { position: relative; }
+  .choice input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+  .choice span { display: block; border: 2px solid var(--border); border-radius: 12px; padding: .65rem .8rem; font-weight: 600; font-size: .92rem; background: var(--white); height: 100%; }
+  .choice span small { display: block; font-weight: 500; color: var(--muted); font-size: .78rem; }
+  .choice input:checked + span { border-color: var(--emerald); background: #ECFDF5; }
+  .choice input:focus-visible + span { box-shadow: var(--focus); }
+  .result { background: linear-gradient(160deg, var(--navy-900), var(--navy-800)); color: var(--white); border-radius: 18px; padding: 1.8rem; position: sticky; top: 90px; }
+  .result .big { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 800; color: var(--gold); line-height: 1.1; }
+  .result .row { display: flex; justify-content: space-between; gap: 1rem; padding: .45rem 0; border-bottom: 1px dashed rgba(255,255,255,.15); font-size: .95rem; }
+  .result .row span:first-child { color: #CBD5E1; }
+  .bar { display: flex; height: 14px; border-radius: 999px; overflow: hidden; margin: .6rem 0 .5rem; background: rgba(255,255,255,.1); }
+  .bar div { transition: width .35s ease; }
+  .legend { display: grid; gap: .3rem; font-size: .88rem; color: #E2E8F0; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: .45rem; }
+  .result h4 { margin-top: 1.4rem; color: var(--white); }
+  .result .list-check li { color: #E2E8F0; font-size: .92rem; }
+  .tip { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.35); color: #FDE68A; border-radius: 10px; padding: .6rem .8rem; font-size: .88rem; margin-top: 1rem; }
+  .disclaimer { font-size: .78rem; color: #94A3B8; margin-top: 1rem; }
+  @media (max-width: 960px) { .est-grid { grid-template-columns: 1fr; } .result { position: static; } }
+  @media (max-width: 420px) { .choice-grid { grid-template-columns: 1fr; } }
+
+  /* ---------- Steps ---------- */
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; counter-reset: step; list-style: none; padding: 0; margin: 0; }
+  .steps li { position: relative; padding-top: 3.4rem; }
+  .steps li::before { counter-increment: step; content: counter(step); position: absolute; top: 1.3rem; left: 1.5rem; width: 2.4rem; height: 2.4rem; border-radius: 10px; background: var(--gold); color: var(--navy-900); font-weight: 800; display: grid; place-items: center; transform: rotate(45deg); }
+  .steps h3 { font-size: 1.1rem; margin-top: 1.2rem; }
+  .steps p { color: var(--muted); font-size: .95rem; margin: 0; }
+  @media (max-width: 960px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } }
+
+  /* ---------- Compare & FAQ ---------- */
+  .compare { width: 100%; border-collapse: separate; border-spacing: 0; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare th, .compare td { padding: 1rem 1.2rem; text-align: left; vertical-align: top; border-bottom: 1px solid var(--border); }
+  .compare thead th { background: var(--navy-900); color: var(--white); }
+  .compare thead th:nth-child(2) { background: var(--emerald); }
+  .compare tbody th { font-weight: 700; width: 22%; background: var(--surface); }
+  .compare tr:last-child > * { border-bottom: 0; }
+  .yes { color: var(--emerald-dark); font-weight: 700; }
+  .no { color: var(--danger); }
+  @media (max-width: 720px) {
+    .compare thead { display: none; }
+    .compare, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: 100%; }
+    .compare tbody th { border-bottom: 0; }
+    .compare td::before { content: attr(data-label); display: block; font-size: .75rem; font-weight: 800; letter-spacing: .5px; text-transform: uppercase; color: var(--muted); }
+  }
+  .faq { margin-top: 3.5rem; display: grid; gap: .7rem; max-width: 52rem; }
+  .faq details { background: var(--white); border: 1px solid var(--border); border-radius: 12px; }
+  .faq summary { cursor: pointer; padding: 1rem 1.2rem; font-weight: 700; list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--emerald); }
+  .faq details[open] summary::after { content: "–"; }
+  .faq details > div { padding: 0 1.2rem 1rem; color: var(--muted); }
+
+  /* ---------- Booking form ---------- */
+  .book-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 2rem; align-items: start; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem 1.2rem; }
+  .field { display: flex; flex-direction: column; gap: .35rem; }
+  .field.full { grid-column: 1 / -1; }
+  .field label, .field .label { font-weight: 700; font-size: .92rem; margin: 0; }
+  .field input, .field select, .field textarea { font: inherit; padding: .7rem .85rem; border: 2px solid var(--border); border-radius: 10px; background: var(--white); color: var(--text); }
+  .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--cobalt); box-shadow: 0 0 0 3px rgba(2,132,199,.2); }
+  .field [aria-invalid="true"] { border-color: var(--danger); }
+  .error { color: var(--danger); font-size: .82rem; min-height: 1.1em; }
+  .radio-row { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .radio-row .choice span { padding: .5rem .9rem; }
+  .form-actions { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: 1.4rem; align-items: center; }
+  .contact-card { background: var(--navy-900); color: #E2E8F0; border-radius: 18px; padding: 1.8rem; }
+  .contact-card h3 { color: var(--white); }
+  .contact-card a { color: var(--gold); }
+  .contact-card dl { margin: 1rem 0 0; display: grid; gap: .8rem; }
+  .contact-card dt { font-size: .75rem; text-transform: uppercase; letter-spacing: 1px; color: #94A3B8; font-weight: 700; }
+  .contact-card dd { margin: 0; overflow-wrap: anywhere; }
+  .book-grid > * { min-width: 0; }
+  .confirm { border: 2px solid var(--emerald); }
+  .confirm .ref { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 1.3rem; font-weight: 800; background: #ECFDF5; color: var(--emerald-dark); padding: .4rem .8rem; border-radius: 8px; display: inline-block; }
+  .confirm dl { display: grid; grid-template-columns: max-content 1fr; gap: .5rem 1rem; margin: 1.2rem 0; }
+  .confirm dt { font-weight: 700; color: var(--muted); }
+  .confirm dd { margin: 0; white-space: pre-line; overflow-wrap: anywhere; }
+  .toast { position: fixed; left: 50%; bottom: 1.5rem; transform: translate(-50%, calc(100% + 2rem)); visibility: hidden; background: var(--navy-900); color: var(--white); padding: .8rem 1.2rem; border-radius: 12px; box-shadow: var(--shadow); transition: transform .3s, visibility .3s; z-index: 80; max-width: calc(100% - 2rem); }
+  .toast.show { transform: translate(-50%, 0); visibility: visible; }
+  @media (max-width: 860px) { .book-grid, .form-grid { grid-template-columns: 1fr; } .confirm dl { grid-template-columns: 1fr; } .confirm dt { margin-top: .4rem; } }
+
+  /* ---------- Footer ---------- */
+  footer { background: var(--navy-900); color: #CBD5E1; padding: 3.5rem 0 1.5rem; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 2rem; }
+  footer h4 { color: var(--white); }
+  footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .4rem; }
+  footer a { color: #E2E8F0; text-decoration: none; }
+  footer a:hover { color: var(--gold); text-decoration: underline; }
+  .foot-bottom { border-top: 1px solid rgba(255,255,255,.1); margin-top: 2.5rem; padding-top: 1.2rem; font-size: .85rem; color: #94A3B8; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
+  @media (max-width: 760px) { .foot-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Reusable emblem: road shield + steering wheel -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="emblem" viewBox="0 0 64 64">
+    <path d="M32 3 58 12v20c0 15-11 25-26 29C17 57 6 47 6 32V12z" fill="#1E293B" stroke="#F59E0B" stroke-width="2.5"/>
+    <path d="M32 61V46" stroke="#F59E0B" stroke-width="2" stroke-dasharray="3 3"/>
+    <circle cx="32" cy="29" r="15" fill="none" stroke="#F8FAFC" stroke-width="3.5"/>
+    <circle cx="32" cy="29" r="4.5" fill="#059669"/>
+    <path d="M17.5 27h10M36.5 27h10M32 33.5V44" stroke="#F8FAFC" stroke-width="3.5" stroke-linecap="round"/>
+  </symbol>
+</svg>
+
+<header class="site-header">
+  <nav class="container nav" aria-label="Main">
+    <a class="brand" href="#top">
+      <svg width="42" height="42" aria-hidden="true"><use href="#emblem"/></svg>
+      <span>Mqadi Driving School<small>K53 · Roodepoort · West Rand</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">
+      <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="sr-only">Toggle menu</span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#courses">Courses &amp; Packages</a></li>
+      <li><a href="#estimator">Lesson Estimator</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#why">Why Mqadi</a></li>
+      <li><a href="#book">Book Lessons</a></li>
+      <li><a class="btn btn-amber btn-sm" href="#book">Book Driving Lessons</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">K53-aligned lessons · Florida, Roodepoort</span>
+        <h1>Calm, patient driving lessons that get you <span>test-ready</span> — and road-confident for life.</h1>
+        <p class="lead">Mqadi Driving School coaches nervous beginners, first-time drivers and refresher students step by step — from clutch control and K53 observations to yard manoeuvres and real Gauteng traffic routes. No shouting. No rushing. Just structured progress you can see.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-amber" href="#estimator">Estimate Your Lesson Package</a>
+          <a class="btn btn-ghost" href="#courses">Explore Courses &amp; Packages</a>
+        </div>
+        <p class="hero-note">Serving Florida, Roodepoort, the West Rand &amp; surrounding Gauteng testing centres.</p>
+      </div>
+      <aside class="hero-card" aria-label="What every learner gets">
+        <span class="demo-tag">What every learner gets</span>
+        <ul>
+          <li><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="#fff" stroke-width="2.5"/></svg></span>A baseline drive &amp; personal K53 milestone plan</li>
+          <li><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="#fff" stroke-width="2.5"/></svg></span>Yard practice: alley docking, parallel parking, 3-point turn, incline start</li>
+          <li><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="#fff" stroke-width="2.5"/></svg></span>Real road-route practice around local testing centres</li>
+          <li><span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 16 16"><path d="M3 8.5 6.5 12 13 4.5" fill="none" stroke="#fff" stroke-width="2.5"/></svg></span>A full mock K53 evaluation before your real test</li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="cred-strip" aria-label="Core strengths (illustrative demo copy)">
+      <div class="cred"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V8l8-4 8 4v12M8 20v-6h8v6" fill="none" stroke="currentColor" stroke-width="2"/></svg>K53 Yard &amp; Road Prep</div>
+      <div class="cred"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="10" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="7.5" cy="17" r="2" fill="currentColor"/><circle cx="16.5" cy="17" r="2" fill="currentColor"/></svg>Code 8 &amp; Code 10 Training</div>
+      <div class="cred"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M4 11h6M14 11h6M12 14v6" stroke="currentColor" stroke-width="2"/></svg>Dual-Control Practice Vehicles</div>
+      <div class="cred"><svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 10h16M9 3v4M15 3v4" stroke="currentColor" stroke-width="2"/></svg>Test-Day Car Hire Available</div>
+    </div>
+    <p class="hero-note" style="margin-top:.8rem"><span class="demo-tag">Demo</span> Strengths shown are illustrative prototype copy — confirm final wording with Mqadi Driving School.</p>
+  </div>
+</section>
+
+<!-- ================= COURSES ================= -->
+<section class="block alt" id="courses">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Courses &amp; Packages</span>
+      <h2>Pick your licence. We'll build the route to your pass.</h2>
+      <p>Every course follows the K53 standard — the same observations, manoeuvres and road behaviour the examiner looks for.</p>
+    </div>
+
+    <div class="tablist" role="tablist" aria-label="Course type" id="courseTabs">
+      <button class="tab" role="tab" id="tab-code8" aria-controls="coursePanel" aria-selected="true">Code 8 (Manual &amp; Auto)</button>
+      <button class="tab" role="tab" id="tab-code10" aria-controls="coursePanel" aria-selected="false" tabindex="-1">Code 10 (Heavy)</button>
+      <button class="tab" role="tab" id="tab-learner" aria-controls="coursePanel" aria-selected="false" tabindex="-1">Learner's Prep &amp; Refresher</button>
+    </div>
+    <div class="course-panel" id="coursePanel" role="tabpanel" aria-labelledby="tab-code8" tabindex="0"></div>
+
+    <div class="stage-wrap">
+      <h3>How lessons adapt to your training stage</h3>
+      <p class="muted">Select a stage to compare lesson pacing and focus.</p>
+      <div class="segmented" role="group" aria-label="Training stage" id="stageToggle">
+        <button class="seg" aria-pressed="true" data-stage="beginner">Complete Beginner</button>
+        <button class="seg" aria-pressed="false" data-stage="intensive">Test-Ready Intensive / Yard Polish</button>
+        <button class="seg" aria-pressed="false" data-stage="refresher">Licensed Driver Refresher</button>
+      </div>
+      <div class="stage-grid" id="stagePanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESTIMATOR ================= -->
+<section class="block" id="estimator">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Lesson Estimator</span>
+      <h2>Estimate your K53 lesson package</h2>
+      <p>Choose your licence, experience and package size. Your estimate, focus split and checklist update instantly.</p>
+    </div>
+    <div class="est-grid">
+      <form class="card" id="estForm" onsubmit="return false">
+        <fieldset>
+          <legend>Licence category</legend>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="cat" value="c8m" checked><span>Code 8 Manual<small>Light motor vehicle</small></span></label>
+            <label class="choice"><input type="radio" name="cat" value="c8a"><span>Code 8 Automatic<small>Light motor vehicle</small></span></label>
+            <label class="choice"><input type="radio" name="cat" value="c10"><span>Code 10<small>Heavy motor vehicle</small></span></label>
+            <label class="choice"><input type="radio" name="cat" value="lrn"><span>Learner's Prep / Refresher<small>Theory or confidence lessons</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Current experience level</legend>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="exp" value="new" checked><span>Brand New Beginner<small>Never / barely driven</small></span></label>
+            <label class="choice"><input type="radio" name="exp" value="some"><span>Some Practice<small>Can move off &amp; change gears</small></span></label>
+            <label class="choice"><input type="radio" name="exp" value="ready"><span>Test-Ready Polish<small>Need yard &amp; route sharpening</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Number of lessons / package</legend>
+          <div class="choice-grid">
+            <label class="choice"><input type="radio" name="pkg" value="1"><span>Single Lesson<small>1 lesson</small></span></label>
+            <label class="choice"><input type="radio" name="pkg" value="5"><span>5-Lesson Starter<small>Save 5%</small></span></label>
+            <label class="choice"><input type="radio" name="pkg" value="10" checked><span>10-Lesson Standard<small>Save 10%</small></span></label>
+            <label class="choice"><input type="radio" name="pkg" value="15"><span>15-Lesson Full Prep<small>Save 12%</small></span></label>
+            <label class="choice"><input type="radio" name="pkg" value="20"><span>20-Lesson Full Prep<small>Save 15%</small></span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>Add-ons</legend>
+          <div class="choice-grid">
+            <label class="choice"><input type="checkbox" name="addon" value="hire"><span>Test-Day Vehicle Hire<small id="hireNote">Car + warm-up drive</small></span></label>
+            <label class="choice"><input type="checkbox" name="addon" value="mock"><span>Mock K53 Pre-Test<small>Full examiner-style run</small></span></label>
+            <label class="choice"><input type="checkbox" name="addon" value="pickup"><span>Doorstep Pickup / Drop-Off<small>Per lesson</small></span></label>
+          </div>
+        </fieldset>
+      </form>
+
+      <div class="result">
+        <span class="demo-tag">Illustrative demo guidance</span>
+        <div aria-live="polite"><!-- only the price rows are announced, not the whole panel -->
+        <p style="margin:.8rem 0 .2rem;color:#CBD5E1">Estimated package guide</p>
+        <div class="big" id="estTotal">R0</div>
+        <div class="row"><span>Per-lesson value <small>(excl. one-off add-ons)</small></span><strong id="estPer">R0</strong></div>
+        <div class="row"><span>Lessons</span><strong id="estLessons">0</strong></div>
+        <div class="row"><span>Package saving</span><strong id="estSave">R0</strong></div>
+        <div class="row"><span>Add-ons</span><strong id="estAddons">None</strong></div>
+        </div>
+
+        <h4>Recommended training focus split</h4>
+        <div class="bar" id="focusBar" role="img" aria-label=""></div>
+        <div class="legend" id="focusLegend"></div>
+        <div class="tip" id="estTip" aria-live="polite" hidden></div>
+
+        <h4>Before-you-start checklist</h4>
+        <ul class="list-check" id="checklist"></ul>
+
+        <button class="btn btn-amber" style="margin-top:1.4rem;width:100%" id="sendToBooking" type="button">Send Package to Booking Form</button>
+        <p class="disclaimer">Demo prices only — not a quote. Final rates, package terms and test-day fees are confirmed by Mqadi Driving School at booking.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section class="block alt" id="how">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">How It Works</span>
+      <h2>Four calm steps from first lesson to test day</h2>
+    </div>
+    <ol class="steps">
+      <li class="card"><h3>Choose Your Licence &amp; Package</h3><p>Pick Code 8 or Code 10, your experience level, pickup suburb and preferred lesson times.</p></li>
+      <li class="card"><h3>Baseline Drive &amp; K53 Plan</h3><p>We assess your comfort behind the wheel and map out clear yard and road milestones.</p></li>
+      <li class="card"><h3>Structured Yard &amp; Road Lessons</h3><p>Master clutch and steering, K53 observations, parking manoeuvres and real traffic routes.</p></li>
+      <li class="card"><h3>Mock Test &amp; Test-Day Support</h3><p>Run a full K53 mock check, then arrange test-day vehicle support if you need it.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= WHY + FAQ ================= -->
+<section class="block" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Why Mqadi</span>
+      <h2>Structured coaching vs. rushed, unstructured lessons</h2>
+      <p>Passing the K53 test is about consistent habits. Here's how a structured approach makes the difference.</p>
+    </div>
+    <table class="compare">
+      <thead><tr><th scope="col">What matters</th><th scope="col">Mqadi Driving School</th><th scope="col">Rushed / Unstructured Lessons</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Coaching style</th><td data-label="Mqadi" class="yes">Patient, step-by-step and encouraging</td><td data-label="Rushed" class="no">Stressful, shouting, "just drive"</td></tr>
+        <tr><th scope="row">Test preparation</th><td data-label="Mqadi" class="yes">Full K53 yard + road checklist, mock evaluation</td><td data-label="Rushed" class="no">Aimless driving around the block</td></tr>
+        <tr><th scope="row">Vehicles</th><td data-label="Mqadi" class="yes">Well-maintained dual-control practice cars</td><td data-label="Rushed" class="no">Whatever is available on the day</td></tr>
+        <tr><th scope="row">Progress</th><td data-label="Mqadi" class="yes">Clear package tracking &amp; milestone plan</td><td data-label="Rushed" class="no">No idea how many lessons are left</td></tr>
+        <tr><th scope="row">Convenience</th><td data-label="Mqadi" class="yes">Doorstep pickups &amp; test-day car hire</td><td data-label="Rushed" class="no">Find your own car and transport</td></tr>
+      </tbody>
+    </table>
+
+    <div class="faq" id="faq">
+      <h3>Frequently asked questions</h3>
+      <details><summary>Do I need a learner's licence before driving lessons?</summary><div>Yes. South African law requires a valid learner's licence for the vehicle code before you drive on public roads. If you don't have one yet, our Learner's Licence Prep lessons help you study road signs, rules and vehicle controls for the test.</div></details>
+      <details><summary>How many lessons does a beginner typically need?</summary><div>Every learner is different, but complete beginners often need around 15–20 lessons to be test-ready, while drivers with some practice may need 8–12. Your baseline drive gives you an honest recommendation.</div></details>
+      <details><summary>What's the difference between Code 8 and Code 10?</summary><div>Code 8 (now often shown as code B) covers light motor vehicles such as ordinary cars and light delivery vehicles. Code 10 (code C1) covers heavier vehicles such as minibuses and trucks between 3,500 kg and 16,000 kg. Code 10 holders may also drive Code 8 vehicles.</div></details>
+      <details><summary>Can I use your car for my driving test?</summary><div>Yes. Test-day car hire includes the use of a familiar, roadworthy school vehicle and a short warm-up drive before your test. Book it with your package or as an add-on.</div></details>
+      <details><summary>Which areas do you pick up from?</summary><div>We're based in Florida, Roodepoort, and offer pickups across Roodepoort and nearby West Rand suburbs. Tell us your suburb in the booking form and we'll confirm availability. <!-- TODO: replace with the confirmed service-area list --></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BOOKING ================= -->
+<section class="block alt" id="book">
+  <div class="container">
+    <div class="section-head">
+      <span class="kicker">Book Lessons</span>
+      <h2>Book your driving lessons</h2>
+      <p>Send an inquiry and we'll confirm your package, lesson times and pickup point.</p>
+    </div>
+    <div class="book-grid">
+      <aside class="contact-card">
+        <svg width="56" height="56" aria-hidden="true"><use href="#emblem"/></svg>
+        <h3 style="margin-top:1rem">Talk to Mqadi Driving School</h3>
+        <p>Prefer to chat? Call or WhatsApp and we'll help you choose the right package.</p>
+        <dl>
+          <dt>Phone / WhatsApp</dt><dd><a href="tel:+27612747684">+27 61 274 7684</a></dd>
+          <dt>Email (placeholder)</dt><dd><a href="mailto:bookings@mqadidrivingschool.example">bookings@mqadidrivingschool.example</a></dd>
+          <dt>Base</dt><dd>1 Goldman St, Florida, Roodepoort, 1710</dd>
+        </dl>
+      </aside>
+
+      <div>
+        <form class="card" id="bookForm" novalidate>
+          <div class="form-grid">
+            <div class="field full"><label for="fName">Full name *</label><input id="fName" name="fullname" autocomplete="name" required aria-describedby="fName-err"><span class="error" id="fName-err"></span></div>
+            <div class="field"><label for="fPhone">Phone *</label><input id="fPhone" name="phone" type="tel" autocomplete="tel" placeholder="e.g. 082 123 4567" required aria-describedby="fPhone-err"><span class="error" id="fPhone-err"></span></div>
+            <div class="field"><label for="fEmail">Email *</label><input id="fEmail" name="email" type="email" autocomplete="email" required aria-describedby="fEmail-err"><span class="error" id="fEmail-err"></span></div>
+            <div class="field"><label for="fSuburb">Suburb / pickup area *</label><input id="fSuburb" name="suburb" autocomplete="address-level3" placeholder="e.g. Florida, Roodepoort" required aria-describedby="fSuburb-err"><span class="error" id="fSuburb-err"></span></div>
+            <div class="field"><label for="fCat">Licence category *</label>
+              <select id="fCat" name="category" required aria-describedby="fCat-err">
+                <option value="">Select…</option>
+                <option>Code 8 Manual</option><option>Code 8 Automatic</option><option>Code 10</option><option>Learner's Licence Prep</option><option>Refresher Lessons</option>
+              </select><span class="error" id="fCat-err"></span></div>
+            <div class="field full"><label for="fPkg">Package or lesson preference *</label><textarea id="fPkg" name="package" rows="4" placeholder="e.g. 10-lesson standard package, or use the estimator above" required aria-describedby="fPkg-err"></textarea><span class="error" id="fPkg-err"></span></div>
+            <div class="field full"><label for="fTimes">Preferred days / times *</label><input id="fTimes" name="times" placeholder="e.g. Weekdays after 4pm, Saturday mornings" required aria-describedby="fTimes-err"><span class="error" id="fTimes-err"></span></div>
+            <fieldset class="field full" aria-describedby="fContact-err"><legend class="label" style="font-size:.92rem">Preferred contact method *</legend>
+              <div class="radio-row">
+                <label class="choice"><input type="radio" name="contact" value="WhatsApp"><span>WhatsApp</span></label>
+                <label class="choice"><input type="radio" name="contact" value="Phone call"><span>Phone call</span></label>
+                <label class="choice"><input type="radio" name="contact" value="Email"><span>Email</span></label>
+              </div><span class="error" id="fContact-err"></span></fieldset>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary" type="submit">Send Booking Inquiry</button>
+            <button class="btn btn-outline" type="button" id="sampleBtn">Fill demo sample data</button>
+          </div>
+        </form>
+
+        <div class="card confirm" id="confirmCard" hidden tabindex="-1">
+          <span class="kicker">Inquiry received (demo)</span>
+          <h3 style="margin-top:.4rem">Thank you — we'll be in touch soon.</h3>
+          <p>Your booking reference: <span class="ref" id="refNo"></span></p>
+          <dl id="confirmList"></dl>
+          <p class="muted" style="font-size:.88rem">Demo prototype: nothing was sent. In production this inquiry would go to bookings@mqadidrivingschool.example.</p>
+          <div class="form-actions">
+            <button class="btn btn-outline" type="button" id="editBtn">Edit inquiry</button>
+            <button class="btn btn-primary" type="button" id="newBtn">Submit another inquiry</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#top"><svg width="40" height="40" aria-hidden="true"><use href="#emblem"/></svg><span>Mqadi Driving School</span></a>
+        <p style="margin-top:1rem">Patient, structured, K53-aligned driving lessons for learner, Code 8 and Code 10 drivers in Florida, Roodepoort and the West Rand.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#courses">Courses &amp; Packages</a></li>
+          <li><a href="#estimator">Lesson Estimator</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#why">Why Mqadi</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#book">Book Lessons</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+27612747684">+27 61 274 7684</a></li>
+          <li><a href="mailto:bookings@mqadidrivingschool.example">bookings@mqadidrivingschool.example</a></li>
+          <li>1 Goldman St, Florida, Roodepoort, 1710</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> Mqadi Driving School. All rights reserved.</span>
+      <span>Demo prototype — prices, packages and copy are illustrative and not an offer.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const rand = n => 'R' + Math.round(n).toLocaleString('en-ZA');
+
+  /* ---------- Mobile menu ---------- */
+  const toggle = $('#menuToggle'), links = $('#navLinks');
+  toggle.addEventListener('click', () => {
+    const open = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  links.addEventListener('click', e => {
+    if (e.target.closest('a')) { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); }
+  });
+
+  /* ---------- Course tabs ---------- */
+  const COURSES = {
+    code8: {
+      title: 'Code 8 — Light Motor Vehicle (Manual & Auto)',
+      tags: ['Manual', 'Automatic', 'Most popular'],
+      intro: 'The licence for everyday cars and bakkies. Learn in a manual for full flexibility, or an automatic to focus on observation and road skills first.',
+      covers: ['Pre-trip K53 vehicle checks & cockpit drill', 'Clutch control, moving off and smooth gear changes', 'K53 observations: mirrors, blind spots & signals', 'Intersections, circles, four-ways and lane changes'],
+      ideal: 'First-time drivers, nervous beginners and anyone preparing for a Code 8 (B / EB) test.',
+      skills: ['Alley docking', 'Parallel parking', 'Three-point turn', 'Incline start', 'Road route practice'],
+      benefits: ['Dual-control vehicle for peace of mind', 'Mock K53 evaluation before your test', 'Optional test-day car hire']
+    },
+    code10: {
+      title: 'Code 10 — Heavy Motor Vehicle',
+      tags: ['C1 / EC1', 'Career-ready'],
+      intro: 'For drivers heading into minibus, delivery or truck work. Build control of a larger vehicle and master the extra space awareness heavy vehicles demand.',
+      covers: ['Heavy-vehicle pre-trip inspection', 'Gear selection, air & handbrake technique', 'Wide turns, mirrors and blind-spot management', 'Following distance and load-aware braking'],
+      ideal: 'Job seekers, taxi and delivery drivers, and Code 8 holders upgrading for work.',
+      skills: ['Alley docking', 'Straight-line reversing', 'Incline start', 'Left & right turns', 'Road route practice'],
+      benefits: ['Code 10 also lets you drive Code 8 vehicles', 'Structured yard sessions in a heavy vehicle', 'Test-day heavy vehicle hire on request']
+    },
+    learner: {
+      title: "Learner's Licence Prep & Refresher Lessons",
+      tags: ["Learner's test", 'Refresher', 'Confidence'],
+      intro: "Two ways in: get your learner's licence with guided study, or rebuild confidence if you've been licensed but haven't driven in a while.",
+      covers: ['Road signs, signals and markings', 'Rules of the road & vehicle controls', 'Practice question drills and mock tests', 'Refresher: highways, peak traffic & parking'],
+      ideal: "Anyone booking the learner's test, plus licensed drivers who feel rusty or anxious.",
+      skills: ['Sign recognition', 'Rules recall', 'Defensive driving', 'Parking refresh', 'Confident route driving'],
+      benefits: ['Calm, judgement-free coaching', 'Flexible single lessons', 'Clear next step to your driver’s licence']
+    }
+  };
+  const tabs = $$('#courseTabs [role="tab"]'), panel = $('#coursePanel');
+  const li = arr => arr.map(x => `<li>${x}</li>`).join('');
+
+  function selectTab(tab, focus) {
+    tabs.forEach(t => { const on = t === tab; t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1; });
+    panel.setAttribute('aria-labelledby', tab.id);
+    const c = COURSES[tab.id.replace('tab-', '')];
+    panel.innerHTML = `
+      <div>
+        <h3>${c.title}</h3>
+        <p>${c.tags.map(t => `<span class="pill">${t}</span>`).join('')}</p>
+        <p class="muted">${c.intro}</p>
+        <h4>What's covered</h4><ul class="list-check">${li(c.covers)}</ul>
+      </div>
+      <div class="card" style="box-shadow:none">
+        <h4>Ideal for</h4><p class="muted">${c.ideal}</p>
+        <h4>Yard &amp; road skills practised</h4><p>${c.skills.map(s => `<span class="pill amber">${s}</span>`).join('')}</p>
+        <h4>Key benefits</h4><ul class="list-check">${li(c.benefits)}</ul>
+      </div>`;
+    if (focus) tab.focus();
+  }
+  tabs.forEach((t, i) => {
+    t.addEventListener('click', () => selectTab(t));
+    t.addEventListener('keydown', e => {
+      const d = { ArrowRight: 1, ArrowLeft: -1 }[e.key];
+      if (d) selectTab(tabs[(i + d + tabs.length) % tabs.length], true);
+      if (e.key === 'Home') selectTab(tabs[0], true);
+      if (e.key === 'End') selectTab(tabs[tabs.length - 1], true);
+    });
+  });
+  selectTab(tabs[0]);
+
+  /* ---------- Training stage toggle ---------- */
+  const STAGES = {
+    beginner:  [['Pace', 'Slow & steady', '1 skill block per lesson, lots of repetition'], ['Focus', 'Vehicle control first', 'Clutch, steering, moving off, quiet-road driving'], ['Typical length', '15–20 lessons', 'Yard work starts once control feels natural']],
+    intensive: [['Pace', 'Focused & frequent', '2–3 lessons a week leading into test date'], ['Focus', 'Yard manoeuvres + test route', 'Alley docking, parallel parking, incline start, mock test'], ['Typical length', '3–8 lessons', 'Ends with a full K53 mock evaluation']],
+    refresher: [['Pace', 'Your comfort level', 'Start where you feel confident, build from there'], ['Focus', 'Real-world confidence', 'Highways, peak traffic, parking and defensive habits'], ['Typical length', '2–5 lessons', 'Single lessons welcome — no package needed']]
+  };
+  const stageBtns = $$('#stageToggle .seg'), stagePanel = $('#stagePanel');
+  function selectStage(key) {
+    stageBtns.forEach(b => b.setAttribute('aria-pressed', b.dataset.stage === key));
+    stagePanel.innerHTML = STAGES[key].map(([k, b, s]) => `<div class="stat"><span>${k}</span><b>${b}</b><span>${s}</span></div>`).join('');
+  }
+  stageBtns.forEach(b => b.addEventListener('click', () => selectStage(b.dataset.stage)));
+  selectStage('beginner');
+
+  /* ---------- Estimator ----------
+     PLUG IN REAL RATES HERE: all prices are illustrative ZAR demo values. */
+  const RATES = { c8m: 300, c8a: 320, c10: 420, lrn: 220 };            // per-lesson base rate (R)
+  const DISCOUNT = { 1: 0, 5: .05, 10: .10, 15: .12, 20: .15 };       // package discount
+  const ADDONS = { hire: { c8m: 650, c8a: 650, c10: 950, }, mock: 350, pickupPerLesson: 40 };
+  const CAT_LABEL = { c8m: 'Code 8 Manual', c8a: 'Code 8 Automatic', c10: 'Code 10', lrn: "Learner's Licence Prep" };
+  const EXP_LABEL = { new: 'Brand New Beginner', some: 'Some Practice', ready: 'Test-Ready Polish' };
+  const PKG_LABEL = { 1: 'Single Lesson', 5: '5-Lesson Starter', 10: '10-Lesson Standard', 15: '15-Lesson Full Prep', 20: '20-Lesson Full Prep' };
+  const RECOMMENDED = { new: [15, 20], some: [8, 12], ready: [3, 5] };
+  const COLORS = ['#059669', '#F59E0B', '#0284C7'];
+
+  function calc({ cat, exp, pkg, addons }) {
+    const base = RATES[cat] * pkg;
+    const lessons = Math.round(base * (1 - DISCOUNT[pkg]));
+    let extras = 0;
+    if (addons.includes('hire') && cat !== 'lrn') extras += ADDONS.hire[cat];
+    if (addons.includes('mock') && cat !== 'lrn') extras += ADDONS.mock;
+    const pickup = addons.includes('pickup') ? ADDONS.pickupPerLesson * pkg : 0;
+    extras += pickup;
+    const total = lessons + extras;
+    const focus = cat === 'lrn'
+      ? (exp === 'new' ? [['Road signs & rules', 45], ['Vehicle controls theory', 30], ['Mock tests', 25]]
+                       : [['Vehicle control refresh', 30], ['Parking & manoeuvres', 30], ['Confident road driving', 40]])
+      : { new: [['Vehicle control', 50], ['K53 yard manoeuvres', 25], ['Road route practice', 25]],
+          some: [['Vehicle control', 30], ['K53 yard manoeuvres', 35], ['Road route practice', 35]],
+          ready: [['Vehicle control', 15], ['K53 yard manoeuvres', 45], ['Road route practice', 40]] }[exp];
+    // One-off add-ons (test-day hire, mock test) stay out of the per-lesson figure.
+    return { total, perLesson: (lessons + pickup) / pkg, saving: base - lessons, extras, focus };
+  }
+
+  // Self-check of the pricing maths (logs to console only if something is wrong).
+  console.assert(calc({ cat: 'c8m', exp: 'new', pkg: 10, addons: [] }).total === 2700, 'c8m x10 should be R2700');
+  console.assert(calc({ cat: 'c10', exp: 'ready', pkg: 5, addons: ['hire', 'mock', 'pickup'] }).total === 1995 + 950 + 350 + 200, 'c10 add-ons');
+  console.assert(calc({ cat: 'lrn', exp: 'some', pkg: 1, addons: ['hire', 'mock'] }).extras === 0, 'learner prep ignores test add-ons');
+  console.assert(calc({ cat: 'c10', exp: 'new', pkg: 1, addons: ['hire', 'mock'] }).perLesson === 420, 'one-off add-ons not in per-lesson value');
+
+  const estForm = $('#estForm');
+  let lastSummary = '', lastLabel = '';
+  function readEst() {
+    const fd = new FormData(estForm);
+    return { cat: fd.get('cat'), exp: fd.get('exp'), pkg: Number(fd.get('pkg')), addons: fd.getAll('addon') };
+  }
+  function renderEst() {
+    const input = readEst(), r = calc(input), { cat, exp, pkg, addons } = input;
+    const isLrn = cat === 'lrn';
+    const refresher = isLrn && exp !== 'new';   // licensed drivers brushing up, not learner's-test students
+    lastLabel = refresher ? 'Refresher Lessons' : CAT_LABEL[cat];
+    // Live regions re-announce any replaced text, so only write values that changed.
+    const setText = (el, v) => { if (el.textContent !== String(v)) el.textContent = v; };
+    setText($('#estTotal'), rand(r.total));
+    setText($('#estPer'), rand(r.perLesson));
+    setText($('#estLessons'), pkg);
+    setText($('#estSave'), r.saving ? rand(r.saving) : '—');
+    const addonNames = addons.filter(a => !(isLrn && a !== 'pickup'))
+      .map(a => ({ hire: 'Test-day hire', mock: 'Mock K53', pickup: 'Pickup' })[a]);
+    setText($('#estAddons'), addonNames.length ? `${addonNames.join(', ')} (${rand(r.extras)})` : 'None');
+    $('#hireNote').textContent = cat === 'c10' ? 'Heavy vehicle + warm-up' : 'Car + warm-up drive';
+
+    $('#focusBar').innerHTML = r.focus.map(([, p], i) => `<div style="width:${p}%;background:${COLORS[i]}"></div>`).join('');
+    $('#focusBar').setAttribute('aria-label', 'Focus split: ' + r.focus.map(([n, p]) => `${n} ${p}%`).join(', '));
+    $('#focusLegend').innerHTML = r.focus.map(([n, p], i) => `<span><i style="background:${COLORS[i]}"></i>${n} — <b>${p}%</b></span>`).join('');
+
+    const [lo, hi] = RECOMMENDED[exp], tip = $('#estTip');
+    let msg = '';
+    if (isLrn && addons.some(a => a !== 'pickup')) msg = `Test-day hire and mock K53 apply to driving tests, so they're not added to ${lastLabel}.`;
+    else if (!isLrn && pkg < lo) msg = `${EXP_LABEL[exp]} learners typically need about ${lo}–${hi} lessons. You can always top up later.`;
+    else if (!isLrn && pkg > hi + 5) msg = `You may be test-ready before ${pkg} lessons — unused lessons can be used as refreshers (demo policy).`;
+    tip.hidden = !msg; setText(tip, msg);
+
+    const checks = refresher
+      ? ['Your valid driver’s licence', 'Comfortable closed shoes (no slippers or heels)', 'ID document on every lesson', 'Note the routes or situations you want to practise (highways, parking, peak traffic)']
+      : isLrn
+      ? ['South African ID document (or valid passport/permit)', 'Two recent ID photos & eye test at the testing centre', 'Book your learner’s test online via NaTIS (online.natis.gov.za)', 'Reading glasses or contacts if you need them']
+      : ['A valid learner’s licence for ' + (cat === 'c10' ? 'Code 10' : 'Code 8'), 'Comfortable closed shoes (no slippers or heels)', 'ID document on every lesson', 'Book your test ~4–8 weeks ahead — slots fill up (timelines vary by centre)'];
+    $('#checklist').innerHTML = li(checks);
+
+    lastSummary = `${lastLabel} · ${PKG_LABEL[pkg]} (${pkg} lesson${pkg > 1 ? 's' : ''})\nExperience: ${EXP_LABEL[exp]}\nAdd-ons: ${addonNames.join(', ') || 'None'}\nEstimated guide: ${rand(r.total)} (${rand(r.perLesson)} per lesson, demo pricing)`;
+  }
+  estForm.addEventListener('change', renderEst);
+  renderEst();
+
+  /* ---------- Booking form ---------- */
+  const form = $('#bookForm'), confirmCard = $('#confirmCard');
+  const toastEl = $('#toast');
+  let toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3200);
+  }
+
+  $('#sendToBooking').addEventListener('click', () => {
+    form.package.value = lastSummary;
+    form.category.value = lastLabel;
+    clearError(form.package); clearError(form.category);
+    confirmCard.hidden = true; form.hidden = false;
+    $('#book').scrollIntoView();
+    form.package.focus({ preventScroll: true });
+    toast('Package added to your booking form ✔');
+  });
+
+  const RULES = {
+    fullname: v => v.length >= 2 || 'Please enter your full name.',
+    phone: v => /^(\+?27|0)\d{9}$/.test(v.replace(/[\s().-]/g, '').replace(/^(\+?27)0/, '$1')) || 'Enter a valid SA number, e.g. 082 123 4567 or +27 82 123 4567.',
+    email: v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) || 'Enter a valid email address.',
+    suburb: v => v.length >= 2 || 'Tell us your suburb or pickup area.',
+    category: v => !!v || 'Choose a licence category.',
+    package: v => v.length >= 3 || 'Tell us your package or lesson preference.',
+    times: v => v.length >= 3 || 'Let us know your preferred days or times.',
+    contact: v => !!v || 'Choose how we should contact you.'
+  };
+  ['082 123 4567', '(011) 674 1234', '082.123.4567', '+27 82 123 4567', '+27 082 123 4567', '27821234567']
+    .forEach(n => console.assert(RULES.phone(n) === true, 'phone should pass: ' + n));
+  ['12345', '082 123 456', '+44 20 7946 0958'].forEach(n => console.assert(RULES.phone(n) !== true, 'phone should fail: ' + n));
+  const errFor = el => document.getElementById((el.id || 'fContact') + '-err');
+  function clearError(el) { el.removeAttribute('aria-invalid'); errFor(el).textContent = ''; }
+
+  function validate() {
+    let first = null;
+    for (const [name, rule] of Object.entries(RULES)) {
+      const v = (name === 'contact' ? (form.querySelector('[name=contact]:checked') || {}).value || '' : form[name].value).trim();
+      const res = rule(v);
+      const el = name === 'contact' ? form.querySelector('[name=contact]') : form[name];
+      const err = errFor(el);
+      if (res === true) { el.removeAttribute('aria-invalid'); err.textContent = ''; }
+      else { el.setAttribute('aria-invalid', 'true'); err.textContent = res; first = first || el; }
+    }
+    if (first) first.focus();
+    return !first;
+  }
+  form.addEventListener('input', e => { if (e.target.getAttribute('aria-invalid')) clearError(e.target); });
+  form.addEventListener('change', e => { if (e.target.name === 'contact') clearError(form.querySelector('[name=contact]')); });
+
+  $('#sampleBtn').addEventListener('click', () => {
+    form.fullname.value = 'Thandi Mokoena';
+    form.phone.value = '082 555 0142';
+    form.email.value = 'thandi.demo@example.com';
+    form.suburb.value = 'Florida, Roodepoort';
+    form.category.value = 'Code 8 Manual';
+    form.package.value = form.package.value || lastSummary;
+    form.times.value = 'Weekdays after 16:00, Saturday mornings';
+    form.querySelector('[name=contact][value="WhatsApp"]').checked = true;
+    $$('[aria-invalid]', form).forEach(clearError);
+    toast('Demo sample data filled in');
+  });
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!validate()) { toast('Please fix the highlighted fields'); return; }
+    const d = new Date(), pad = n => String(n).padStart(2, '0');
+    const ref = `MQ-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const rows = [
+      ['Name', form.fullname.value], ['Phone', form.phone.value], ['Email', form.email.value],
+      ['Pickup area', form.suburb.value], ['Licence', form.category.value], ['Package', form.package.value],
+      ['Preferred times', form.times.value], ['Contact via', form.querySelector('[name=contact]:checked').value]
+    ];
+    // BACKEND HOOK: POST these values (plus ref) to your booking endpoint / email service here.
+    const dl = $('#confirmList');
+    dl.replaceChildren();
+    rows.forEach(([k, v]) => {   // textContent keeps user input from being parsed as HTML
+      const dt = document.createElement('dt'), dd = document.createElement('dd');
+      dt.textContent = k; dd.textContent = v.trim(); dl.append(dt, dd);
+    });
+    $('#refNo').textContent = ref;
+    form.hidden = true; confirmCard.hidden = false; confirmCard.focus();
+  });
+
+  $('#editBtn').addEventListener('click', () => { confirmCard.hidden = true; form.hidden = false; form.fullname.focus(); });
+  $('#newBtn').addEventListener('click', () => {
+    form.reset();
+    confirmCard.hidden = true; form.hidden = false; form.fullname.focus();
+  });
+
+  $('#year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
