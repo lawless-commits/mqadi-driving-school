@@ -481,6 +481,9 @@
                 <label class="choice"><input type="radio" name="contact" value="Email"><span>Email</span></label>
               </div><span class="error" id="fContact-err"></span></fieldset>
           </div>
+          <!-- Spam trap: hidden from people; FormSubmit drops submissions where bots fill it in. -->
+          <input class="sr-only" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <p class="error" id="formStatus" role="alert"></p>
           <div class="form-actions">
             <button class="btn btn-primary" type="submit">Send Booking Inquiry</button>
             <button class="btn btn-outline" type="button" id="sampleBtn">Fill demo sample data</button>
@@ -488,11 +491,11 @@
         </form>
 
         <div class="card confirm" id="confirmCard" hidden tabindex="-1">
-          <span class="kicker">Inquiry received (demo)</span>
+          <span class="kicker">Inquiry received</span>
           <h3 style="margin-top:.4rem">Thank you — we'll be in touch soon.</h3>
           <p>Your booking reference: <span class="ref" id="refNo"></span></p>
           <dl id="confirmList"></dl>
-          <p class="muted" style="font-size:.88rem">Demo prototype: nothing was sent. In production this inquiry would go to bookings@mqadidrivingschool.example.</p>
+          <p class="muted" style="font-size:.88rem" id="confirmNote"></p>
           <div class="form-actions">
             <button class="btn btn-outline" type="button" id="editBtn">Edit inquiry</button>
             <button class="btn btn-primary" type="button" id="newBtn">Submit another inquiry</button>
@@ -778,7 +781,13 @@
     toast('Demo sample data filled in');
   });
 
-  form.addEventListener('submit', e => {
+  // EMAIL SETUP (FormSubmit, https://formsubmit.co): put the recipient address here, or the random
+  // alias FormSubmit gives you after activation so the address isn't public. The first real submission
+  // sends an activation email to that address; inquiries arrive once the link in it is clicked.
+  // Empty = demo mode: nothing is sent.
+  const BOOKING_EMAIL = '';
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validate()) { toast('Please fix the highlighted fields'); return; }
     const d = new Date(), pad = n => String(n).padStart(2, '0');
@@ -788,7 +797,27 @@
       ['Pickup area', form.suburb.value], ['Licence', form.category.value], ['Package', form.package.value],
       ['Preferred times', form.times.value], ['Contact via', form.querySelector('[name=contact]:checked').value]
     ];
-    // BACKEND HOOK: POST these values (plus ref) to your booking endpoint / email service here.
+    const status = $('#formStatus'), btn = form.querySelector('[type=submit]');
+    status.textContent = '';
+    if (BOOKING_EMAIL) {
+      btn.disabled = true; btn.textContent = 'Sending…';
+      try {
+        const res = await fetch(`https://formsubmit.co/ajax/${BOOKING_EMAIL}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify({ _subject: `New booking inquiry ${ref}`, _template: 'table', _replyto: form.email.value,
+                                 _honey: form._honey.value, Reference: ref, ...Object.fromEntries(rows) })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || String(data.success) !== 'true') throw new Error(data.message || `HTTP ${res.status}`);
+      } catch (err) {   // keep the form filled in so nothing the visitor typed is lost
+        status.textContent = `Sorry, your inquiry couldn't be sent (${err.message}). Please try again, or call or WhatsApp +27 61 274 7684.`;
+        return;
+      } finally { btn.disabled = false; btn.textContent = 'Send Booking Inquiry'; }
+    }
+    $('#confirmNote').textContent = BOOKING_EMAIL
+      ? 'Your inquiry has been emailed to Mqadi Driving School. Keep your reference number handy.'
+      : 'Demo prototype: nothing was sent. Once email is set up, inquiries go straight to Mqadi Driving School.';
     const dl = $('#confirmList');
     dl.replaceChildren();
     rows.forEach(([k, v]) => {   // textContent keeps user input from being parsed as HTML
