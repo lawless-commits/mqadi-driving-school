@@ -786,12 +786,13 @@
   // sends an activation email to that address; inquiries arrive once the link in it is clicked.
   // Empty = demo mode: nothing is sent.
   const BOOKING_EMAIL = '';
+  let editingRef = '';   // set while the visitor edits an inquiry they already sent, so the resend keeps its reference
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
     if (!validate()) { toast('Please fix the highlighted fields'); return; }
     const d = new Date(), pad = n => String(n).padStart(2, '0');
-    const ref = `MQ-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${Math.floor(1000 + Math.random() * 9000)}`;
+    const ref = editingRef || `MQ-${String(d.getFullYear()).slice(2)}${pad(d.getMonth() + 1)}${pad(d.getDate())}-${Math.floor(1000 + Math.random() * 9000)}`;
     const rows = [
       ['Name', form.fullname.value], ['Phone', form.phone.value], ['Email', form.email.value],
       ['Pickup area', form.suburb.value], ['Licence', form.category.value], ['Package', form.package.value],
@@ -805,7 +806,7 @@
         const res = await fetch(`https://formsubmit.co/ajax/${BOOKING_EMAIL}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ _subject: `New booking inquiry ${ref}`, _template: 'table', _replyto: form.email.value,
+          body: JSON.stringify({ _subject: `${editingRef ? 'Updated' : 'New'} booking inquiry ${ref}`, _template: 'table', _replyto: form.email.value,
                                  _honey: form._honey.value, Reference: ref, ...Object.fromEntries(rows) })
         });
         const data = await res.json().catch(() => ({}));
@@ -825,10 +826,11 @@
       dt.textContent = k; dd.textContent = v.trim(); dl.append(dt, dd);
     });
     $('#refNo').textContent = ref;
+    editingRef = '';
     form.hidden = true; confirmCard.hidden = false; confirmCard.focus();
   });
 
-  $('#editBtn').addEventListener('click', () => { confirmCard.hidden = true; form.hidden = false; form.fullname.focus(); });
+  $('#editBtn').addEventListener('click', () => { editingRef = $('#refNo').textContent; confirmCard.hidden = true; form.hidden = false; form.fullname.focus(); });
   $('#newBtn').addEventListener('click', () => {
     form.reset();
     confirmCard.hidden = true; form.hidden = false; form.fullname.focus();
